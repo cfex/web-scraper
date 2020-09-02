@@ -1,0 +1,49 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <title>Hello, world!</title>
+</head>
+<body>
+
+<div class="container">
+
+    <h2>Search for products</h2>
+    <form class="form-inline" action="#" th:action="@{/search}" method="post">
+        <div class="form-group md-2">
+            <input type="text" name="query" class="form-control"  placeholder="eg iPhone8" id="exampleInputEmail1" aria-describedby="emailHelp">
+        </div>
+        <button type="submit" class="btn btn-warning">Search</button>
+    </form>
+    <br>
+    <h3>Results for query: <span class="query" th:text="${query}">null</span></h3>
+    <h4>Results found: <span  class="query" th:text="${resultsCount}">0</span></h4>
+    <table class="table table-hover">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">Product title</th>
+            <th scope="col">Price low-high</th>
+            <th scope="col">Discount</th>
+            <th scope="col">URL</th>
+        </tr>
+        </thead>
+        <tbody>
+            <th:block th:each="product : ${products}">
+                <tr>
+                    <td th:text="${product.getName()}">...</td>
+                    <td class="price" th:text="${product.getPrice()}">...</td>
+                    <td class="discount" th:text="${product.getDiscount()}">...</td>
+                    <td><a target="_blank" th:href="${product.getUrl()}" th:text="Link">More</a></td>
+                </tr>
+            </th:block>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
