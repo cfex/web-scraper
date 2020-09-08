@@ -4,6 +4,7 @@ import com.web.scrapper.web.MailerService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.mail.MessagingException;
 
@@ -17,9 +18,9 @@ public class MailerController {
     }
 
     @PostMapping(path = "/mail")
-    public String send(@RequestParam("email") String email, @RequestParam("query") String query) throws MessagingException {
+    public RedirectView send(@RequestParam("email") String email, @RequestParam("query") String query) throws MessagingException {
         mailerService.sendMail(email, query);
 
-        return "index";
+        return new RedirectView("redirect:/");
     }
 }
