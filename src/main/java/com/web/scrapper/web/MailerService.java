@@ -20,7 +20,7 @@ public class MailerService {
         this.javaMailSender = javaMailSender;
     }
 
-    public MimeMessage sendMail(String recipient, String query) throws MessagingException {
+    public void sendMail(String recipient, String query) throws MessagingException {
         MimeMessage message = javaMailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message, true);
         try {
@@ -33,6 +33,5 @@ public class MailerService {
         } catch (Exception e) {
             e.getStackTrace();
         }
-        return message;
     }
 }
