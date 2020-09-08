@@ -6,6 +6,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.stereotype.Service;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,9 +14,8 @@ import java.util.List;
 @Service
 public class ScrapperService {
 
-    private final String BASE_URL = "https://www.eponuda.com";
-
     public List<ScrappedModel> init(String query) throws IOException {
+        final String BASE_URL = "https://www.eponuda.com";
         /*
         / First we specify the url, connect and get content from it
         */
@@ -25,7 +25,7 @@ public class ScrapperService {
         / We select elements by it's id value,
         / <div id="#pr_view_grid"> .. </div>
         */
-        Elements elements = document.select("#pr_view_grid");
+        Element elements = document.getElementById("pr_view_grid");
 
         /*
         / If we successfully get elements by id,
@@ -48,8 +48,7 @@ public class ScrapperService {
             String price = div.select(".b-paging-product__price").text();
             String title = div.select(".b-paging-product__title").text();
             String discount = div.select(".discount-p").text();
-            Element urlElement = div.select("a").first();
-            String url = urlElement.attr("href");
+            String url = div.select("a").first().attr("href");
 
             /*
             / Assign values to the object,
