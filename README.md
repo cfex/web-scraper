@@ -1,3 +1,3 @@
 # web-scraper
-:mag: Simple web scraper \w JSOUP and Spring Boot Mailer
+:mag: Simple web scraper using JSOUP library and Spring Boot Mailer
 
